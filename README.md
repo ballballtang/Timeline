@@ -1,4 +1,4 @@
-# Timeline
+﻿# Timeline
 前端：vue.js
 后端：springboot
 数据库：mysql
@@ -15,4 +15,6 @@
 测试更新接口的时候是直接在数据库里添加消息
 接口有4个：获取更新的消息，获取初始的消息，获取目前消息个数，根据ID查找消息
 
+效果展示：
+![Image text](https://https://raw.githubusercontent.com/ballballtang/Timeline/master/assets/frontend.jpg)
  
