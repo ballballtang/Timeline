@@ -33,13 +33,20 @@ public class Message {
     @Column(name = "timestamp")
     Timestamp timestamp;
 
+    public Message(){
+
+    }
+    public Message(String author, String content, String img){
+        this.author = author;
+        this.content = content;
+        this.img = img;
+    }
+
     public  int getId() { return id;}
 
     public String getAuthor() { return author;}
 
-    public String getContent() {
-        return content;
-    }
+    public String getContent() { return content; }
 
     public String getImg() { return img;}
 
@@ -54,5 +61,37 @@ public class Message {
     }
 
     public void setImg(String image) { img = image;}
+
+    public static class MessageBuilder{
+        private int id;
+        private String author;
+        private String content;
+        private String img;
+
+        public MessageBuilder id(int id){
+            this.id = id;
+            return this;
+        }
+
+        public MessageBuilder author(String author){
+            this.author = author;
+            return this;
+        }
+
+        public MessageBuilder content(String content){
+            this.content = content;
+            return this;
+        }
+
+        public MessageBuilder img(String img){
+            this.img = img;
+            return this;
+        }
+
+        public Message build(){
+            return new Message(author,content,img);
+        }
+
+    }
 
 }

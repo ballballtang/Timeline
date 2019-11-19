@@ -1,9 +1,8 @@
 package com.proj.timeline.controller;
 
-
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import com.proj.timeline.dao.MessageRepository;
@@ -32,20 +31,23 @@ class MessageControllerTest {
     void testGetMessage() throws Exception{
         ResultActions perform = mockMvc.perform(post("/getMessage"));
         perform.andExpect(status().isOk());
-        verify(messageRepository).selectUpdateMessage(3);
+        verify(messageRepository,times(1)).selectUpdateMessage(3);
         MvcResult result = perform.andReturn();
-        System.out.println(result.getResponse().getContentLength());
+        assertEquals(0,result.getResponse().getContentLength());
     }
+
     @Test
     void testGetUpdateMessage() throws  Exception{
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id",5);
         String requestJson = JSONObject.toJSONString(jsonObject);
+
         ResultActions perform = mockMvc.perform(post("/getUpdateMessage").contentType(MediaType.APPLICATION_JSON).content(requestJson));
         perform.andExpect(status().isOk());
 
-        verify(messageRepository).selectUpdateMessage(5);
+        verify(messageRepository,times(1)).selectUpdateMessage(5);
     }
+
     @Test
     void testGetNewMessage() throws  Exception{
         JSONObject jsonObject = new JSONObject();
@@ -58,15 +60,13 @@ class MessageControllerTest {
         ResultActions perform = mockMvc.perform(post("/getNewMessage").contentType(MediaType.APPLICATION_JSON).content(requestJson));
         perform.andExpect(status().isOk());
 
-        verify(messageRepository).selectMsgById(4);
-        System.out.println(perform.andReturn().getResponse().getContentAsString());
+        verify(messageRepository,times(1)).selectMsgById(4);
     }
+
     @Test
     void testGetNum() throws Exception{
         ResultActions perform = mockMvc.perform(post("/getNum"));
         perform.andExpect(status().isOk());
-        when(messageRepository.getNum()).thenReturn(4);
-        verify(messageRepository).getNum();
-        System.out.println(messageRepository.getNum());
+        verify(messageRepository,times(1)).getNum();
     }
 }
