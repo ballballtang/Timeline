@@ -16,5 +16,6 @@
 接口有4个：获取更新的消息，获取初始的消息，获取目前消息个数，根据ID查找消息
 
 效果展示：
-![Image text](https://https://raw.githubusercontent.com/ballballtang/Timeline/master/assets/frontend.jpg)
+
+![Image text](https://raw.githubusercontent.com/ballballtang/Timeline/master/assets/frontend.jpg)
  
